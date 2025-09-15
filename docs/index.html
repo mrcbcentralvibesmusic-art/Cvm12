@@ -1,1 +1,79 @@
-docs/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central Vibes Music</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Navbar -->
+<header class="bg-gray-900 p-4 flex items-center justify-between">
+  <a href="index.html" class="text-yellow-500 text-2xl font-bold">Central Vibes Music</a>
+  <nav>
+    <ul class="flex space-x-4 font-semibold">
+      <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+      <li><a href="songs.html" class="hover:text-yellow-400">Songs</a></li>
+      <li><a href="artists.html" class="hover:text-yellow-400">Artists</a></li>
+      <li><a href="blog.html" class="hover:text-yellow-400">Blog</a></li>
+      <li><a href="admin.html" class="hover:text-yellow-400">Admin</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="py-12 px-6 text-center bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800">
+  <h1 class="text-4xl font-bold mb-4">Welcome to Central Vibes Music</h1>
+  <p class="text-gray-300 mb-6">Stream, download, and discover fresh tracks from local and global artists.</p>
+  <a href="songs.html" class="bg-yellow-500 text-black px-6 py-3 rounded font-semibold hover:bg-yellow-400">Browse Songs</a>
+</section>
+
+<!-- Featured Artists -->
+<section class="py-12 px-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Featured Artists</h2>
+  <div id="featured-artists" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center"></div>
+</section>
+
+<!-- Social Media Feed -->
+<section class="py-12 px-6 bg-gray-800 text-center">
+  <h2 class="text-2xl font-bold mb-6">Follow Us on Social Media</h2>
+  <div class="flex justify-center space-x-6">
+    <a href="#" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500">Facebook</a>
+    <a href="#" class="bg-pink-500 px-4 py-2 rounded hover:bg-pink-400">Instagram</a>
+    <a href="#" class="bg-red-600 px-4 py-2 rounded hover:bg-red-500">YouTube</a>
+  </div>
+</section>
+
+<!-- AdSense Placeholder -->
+<section class="py-12 px-6 text-center">
+  <div class="bg-gray-700 text-gray-300 p-6 rounded">
+    <p>AdSense Ad Placeholder</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-6 text-center">
+  <p>&copy; 2025 Central Vibes Music. All rights reserved.</p>
+</footer>
+
+<script>
+const API_BASE = "https://central-vibes-music.onrender.com";
+
+fetch(`${API_BASE}/api/artists`).then(res => res.json()).then(artists => {
+  const container = document.getElementById('featured-artists');
+  artists.forEach(a => {
+    container.innerHTML += `
+      <div class="bg-gray-700 p-4 rounded">
+        <h3 class="font-bold text-lg mb-2">${a.name}</h3>
+        <p class="text-gray-400 mb-2">${a.genre}</p>
+        <a href="songs.html?artist=${encodeURIComponent(a.name)}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">View Songs</a>
+      </div>
+    `;
+  });
+});
+</script>
+
+</body>
+</html>
